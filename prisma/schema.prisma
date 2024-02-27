@@ -12,3 +12,26 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Movies {
+  id           String   @id @default(cuid())
+  title        String   @unique
+  slug         String?  @unique
+  release_year Int
+  duration     Int
+  genres       Genres[]
+  actors       Actors[]
+}
+
+model Genres {
+  id          Int      @id @default(autoincrement())
+  description String   @unique
+  movies      Movies[]
+}
+
+model Actors {
+  id        String   @id @default(cuid())
+  name      String
+  last_name String
+  movies    Movies[]
+}
