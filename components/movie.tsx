@@ -17,13 +17,20 @@ import {
 	DialogTrigger,
 } from './ui/dialog'
 import { Badge } from './ui/badge'
+import IMovie from '@/types/movie'
 
-function Movie() {
+type MovieProps = {
+	movie: IMovie
+}
+
+function Movie({ movie }: MovieProps) {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Nombre Pelicula</CardTitle>
-				<CardDescription>Card Description</CardDescription>
+				<CardTitle>{movie.title}</CardTitle>
+				<CardDescription>
+					{movie.release_year} movie | {Math.floor(movie.duration / 60)}h long
+				</CardDescription>
 			</CardHeader>
 			<CardFooter>
 				<Dialog>
