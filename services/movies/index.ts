@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const getMovies = async () => {
 	try {
-		const { data } = await axios.get('http://localhost:3000/api/movies')
+		const { data } = await axios.get(process.env.NEXT_PUBLIC_API_URI as string)
 		return data
 	} catch (error) {
 		console.log(error)
@@ -19,7 +19,7 @@ export const createMovie = async (params: ICreateMovie) => {
 
 	try {
 		const { data } = await axios.post(
-			'http://localhost:3000/api/movies',
+			process.env.NEXT_PUBLIC_API_URI as string,
 			params,
 			config,
 		)
