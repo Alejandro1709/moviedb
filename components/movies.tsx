@@ -8,8 +8,10 @@ import { useMoviesStore } from '@/stores/moviesStore'
 function Movies() {
 	const [movies, setMovies] = useState<IMovie[]>([])
 	const loadedMovies = useMoviesStore((state) => state.getMovies)
+	const setLoading = useMoviesStore((state) => state.setIsLoading)
 
 	const handleFetchMovies = async () => {
+		setLoading(true)
 		const movs = await loadedMovies()
 		setMovies(movs as IMovie[])
 	}
@@ -21,6 +23,7 @@ function Movies() {
 
 		return () => {
 			clearInterval(interval)
+			setLoading(false)
 		}
 	}, [])
 
@@ -29,7 +32,7 @@ function Movies() {
 			{movies && movies.length > 0 ? (
 				movies.map((movie) => <Movie key={movie.id} movie={movie} />)
 			) : (
-				<p>Loading...</p>
+				<p>Nothing to show...</p>
 			)}
 		</section>
 	)

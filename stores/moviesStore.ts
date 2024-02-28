@@ -4,12 +4,15 @@ import { create } from 'zustand'
 
 type MoviesState = {
 	movies: IMovie[]
+	isLoading: boolean
 	getMovies: () => Promise<IMovie[] | MoviesState>
 	setMovies: (movies: IMovie[]) => void
+	setIsLoading: (loading: boolean) => void
 }
 
 export const useMoviesStore = create<MoviesState>((set, get) => ({
 	movies: [],
+	isLoading: false,
 	getMovies: async () => {
 		const currentMovies = get()
 
@@ -22,4 +25,5 @@ export const useMoviesStore = create<MoviesState>((set, get) => ({
 		return movies
 	},
 	setMovies: (movies: IMovie[]) => set(() => ({ movies })),
+	setIsLoading: (loading: boolean) => set(() => ({ isLoading: loading })),
 }))

@@ -13,13 +13,13 @@ import {
 import MovieForm from './movie-form'
 
 function Navbar() {
-	const movies = useMoviesStore((state) => state.movies)
+	const isLoading = useMoviesStore((state) => state.isLoading)
 
 	return (
 		<nav className='flex flex-row self-end justify-end gap-4 p-3'>
 			<Dialog>
 				<DialogTrigger asChild>
-					<Button disabled={movies.length === 0}>Add Movie</Button>
+					<Button disabled={!isLoading}>Add Movie</Button>
 				</DialogTrigger>
 				<DialogContent>
 					<DialogHeader>
