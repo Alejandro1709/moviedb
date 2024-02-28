@@ -41,26 +41,32 @@ function Movie({ movie }: MovieProps) {
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
-							<DialogTitle>Nombre Pelicula</DialogTitle>
-							<DialogDescription>Genero - Anio</DialogDescription>
+							<DialogTitle>{movie.title}</DialogTitle>
+							<DialogDescription>
+								Movie - {movie.release_year}
+							</DialogDescription>
 						</DialogHeader>
 						<DialogDescription className='flex flex-col gap-4'>
 							<div className='flex justify-between items-center'>
 								<h2>Generos:</h2>
 
 								<div className='flex gap-2'>
-									<Badge variant='outline'>Accion</Badge>
-									<Badge variant='outline'>Accion</Badge>
-									<Badge variant='outline'>Accion</Badge>
+									{movie.genres.map((g) => (
+										<Badge variant='outline' key={g.id}>
+											{g.description}
+										</Badge>
+									))}
 								</div>
 							</div>
 							<div className='flex justify-between items-center'>
 								<h2>Actores:</h2>
 
 								<div className='flex gap-2'>
-									<Badge>Accion</Badge>
-									<Badge>Accion</Badge>
-									<Badge>Accion</Badge>
+									{movie.actors.map((a) => (
+										<Badge key={a.id}>
+											{a.name} {a.last_name}
+										</Badge>
+									))}
 								</div>
 							</div>
 						</DialogDescription>
