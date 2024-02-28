@@ -1,3 +1,11 @@
+export interface ICreateMovie {
+	title: string
+	release_year: number
+	duration: number
+	genres: string
+	actors: string
+}
+
 export default interface IMovie {
 	id: string
 	title: string

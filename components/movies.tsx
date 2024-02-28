@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Movie from './movie'
 import IMovie from '@/types/movie'
 import { useMoviesStore } from '@/stores/moviesStore'
-import Loader from './loader'
 
 function Movies() {
 	const [movies, setMovies] = useState<IMovie[]>([])
@@ -30,7 +29,7 @@ function Movies() {
 			{movies && movies.length > 0 ? (
 				movies.map((movie) => <Movie key={movie.id} movie={movie} />)
 			) : (
-				<Loader />
+				<p>Loading...</p>
 			)}
 		</section>
 	)
